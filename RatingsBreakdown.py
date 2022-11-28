@@ -13,7 +13,7 @@ class RatingsBreakdown(MRJob):
     ]
 # Define mapper to break up lines of data on tab, extracts the rating and return key value pair of rating and 1
     def mapper_get_ratings(self, _, line):
-      (userID, movieID, rating, timestamp) = line.split('\t')
+      (movieID, rating) = line.split('\t')
       yield rating, 1
 # Reduce key values, return rating and rating count.
 # Reducer function takes in eacn indvidual unique rating one through five and a list of all the one values associated with each rating and then it yields the key which is the rating (1 through 5) and the sum of all those ones which is eventually the count of each rating type.
